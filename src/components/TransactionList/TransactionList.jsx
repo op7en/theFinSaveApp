@@ -1,7 +1,7 @@
 import React from 'react'
 import TransactionItem from '../TransactionItem/TransactionItem'
 
-const TransactionList = ({ transactions, onDeleteTransaction }) => {
+const TransactionList = ({ transactions, onDeleteTransaction, categoryIcons, categoryCodeMCC }) => {
   if (transactions.length === 0) {
     return (
       <div className="bg-white rounded-2xl shadow-lg p-6">
@@ -29,6 +29,8 @@ const TransactionList = ({ transactions, onDeleteTransaction }) => {
             key={transaction.id}
             transaction={transaction}
             onDeleteTransaction={onDeleteTransaction}
+            categoryIcons={categoryIcons}
+            categoryCodeMCC={categoryCodeMCC}  // ← ЭТУ СТРОКУ ДОБАВЬ
           />
         ))}
       </div>

@@ -8,13 +8,18 @@ const TransactionForm = ({ onAddTransaction, categories }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    if (amount && category) {
-      onAddTransaction(amount, type, category, description)
-      setAmount('')
-      setDescription('')
-      setCategory('')
+    
+    if (!amount || !category) {
+      return
     }
+    
+    onAddTransaction(amount, type, category, description)
+    setAmount('')
+    setDescription('')
+    setCategory('')
   }
+
+  const isFormValid = amount && category
 
   return (
     <div className="bg-white rounded-2xl shadow-lg p-6 mb-8">
@@ -56,9 +61,11 @@ const TransactionForm = ({ onAddTransaction, categories }) => {
             <label className="block text-sm font-medium text-gray-700 mb-1">Сумма</label>
             <input
               type="number"
-              placeholder="0"
+              placeholder="Введите сумму"
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
+              min="1"
+              step="1"
               className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
             />
